@@ -1,8 +1,8 @@
 # GolangConf 2019
 
 Created: Oct 09, 2019 11:52 PM
-Tags: Media,golang,it,thoughts
----
+Tags: Media, golang, it, thoughts
+
 
 В понедельник 7 октября прошла конференция GolangConf 2019.
 

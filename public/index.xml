@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Merlin toybox</title>
+    <link>https://ninedraft.github.io/</link>
+    <description>Recent content on Merlin toybox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Dec 2020 14:05:47 +0300</lastBuildDate><atom:link href="https://ninedraft.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golangconf 2019</title>
+      <link>https://ninedraft.github.io/posts/golangconf2019/</link>
+      <pubDate>Thu, 10 Dec 2020 14:05:47 +0300</pubDate>
+      
+      <guid>https://ninedraft.github.io/posts/golangconf2019/</guid>
+      <description>GolangConf 2019  GolangConf 2019  Go делать игры! Applied Go code similarity analysis Как ошибиться с конкурентностью в Go Дженерики в Go Не IT Материалы    В понедельник 7 октября прошла конференция GolangConf 2019.
+Жаль, что физически невозможно находиться в нескольких местах одновременно, и вдвойне жаль, что мне пришлось уйти до начала доклада Фила &amp;ldquo;Эшер II&amp;rdquo; Кулина — с нетерпением жду видеоматериалов!
+Дальше будет краткий обзор докладов, которые мне особенно запомнились — но надо понимать, что список далеко не полный, и порядок в нём не означает ничего :3</description>
+    </item>
+    
+  </channel>
+</rss>

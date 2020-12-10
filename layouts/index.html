@@ -1,0 +1,25 @@
+{{ define "main" }}
+<main aria-role="main">
+    <header>
+        <h1>{{.Title}}</h1>
+        {{ with .Params.subtitle }}
+        <span>{{.}}</span>
+        {{ end }}
+    </header>
+    <article>
+        <div class="container">
+            <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+            <div>
+                {{.Content}}
+            </div>
+            <div>
+                <ul>
+                    {{ range sort .Site.RegularPages "Date" "asc"}}
+                    <li><a href="{{ .Permalink }}">{{ .Date.Format "2006-01-02" }} | {{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </article>
+</main>
+{{ end }}

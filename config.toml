@@ -1,4 +1,4 @@
-baseURL = "https://ninedraft.github.io"
+baseURL = "https://ninedraft.github.io/public"
 languageCode = "en-us"
 title = "Merlin toybox"
 theme = "researcher"

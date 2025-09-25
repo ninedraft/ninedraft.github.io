@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pavel Petrukhin — Backend Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pavel Petrukhin — Backend Developer CV">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #101a12;
+      --card: rgba(18, 28, 22, 0.85);
+      --card-border: rgba(76, 175, 80, 0.16);
+      --text: #f4f7fb;
+      --muted: #a3c5aa;
+      --accent: #4caf50;
+      --accent-soft: rgba(76, 175, 80, 0.12);
+      --badge: rgba(76, 175, 80, 0.16);
+      --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7);
+      background-color: var(--bg);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: radial-gradient(circle at top, rgba(76, 175, 80, 0.12), transparent 55%), var(--bg);
+      min-height: 100vh;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+      display: grid;
+      gap: 24px;
+    }
+    header {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items: center;
+      padding: 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.18), rgba(20, 86, 45, 0.35));
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      box-shadow: var(--shadow);
+    }
+    .intro h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.9rem, 3.4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .intro p {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(76, 175, 80, 0.24);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .links a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(76, 175, 80, 0.5);
+      background: rgba(76, 175, 80, 0.18);
+    }
+    .portrait {
+      justify-self: center;
+      width: min(180px, 55%);
+      aspect-ratio: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 18px 32px -30px rgba(76, 175, 80, 0.6);
+    }
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    section {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.01em;
+    }
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tag {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--badge);
+      font-family: "Fira Code", monospace;
+      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+      border: 0;
+      cursor: pointer;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tag:hover,
+    .tag:focus-visible {
+      background: rgba(76, 175, 80, 0.24);
+      transform: translateY(-1px);
+      outline: none;
+    }
+    .tag.is-active {
+      background: rgba(76, 175, 80, 0.32);
+      box-shadow: 0 6px 16px -12px rgba(76, 175, 80, 0.8);
+    }
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .experience-list {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .experience-card {
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(12, 20, 14, 0.7);
+      border: 1px solid rgba(76, 175, 80, 0.12);
+      display: grid;
+      gap: 10px;
+    }
+    .experience-card header {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      display: block;
+    }
+    .experience-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .experience-card ul {
+      margin: 10px 0 0 16px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .experience-card .stack {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .projects-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .project {
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(12, 20, 14, 0.7);
+      border: 1px solid rgba(76, 175, 80, 0.12);
+      display: grid;
+      gap: 10px;
+    }
+    .project a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .project a:hover {
+      text-decoration: underline;
+    }
+
+    .skill-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(320px, 85vw);
+      height: 100vh;
+      padding: 24px;
+      background: rgba(18, 28, 22, 0.96);
+      border-left: 1px solid rgba(76, 175, 80, 0.2);
+      box-shadow: -18px 0 40px -32px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transform: translateX(110%);
+      transition: transform 0.32s ease;
+      z-index: 8;
+      pointer-events: none;
+    }
+    .skill-panel--open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .skill-panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .skill-panel__title {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    .skill-panel__subtitle {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .skill-panel__close {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 8px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .skill-panel__close:hover,
+    .skill-panel__close:focus-visible {
+      color: var(--text);
+      background: rgba(76, 175, 80, 0.18);
+      outline: none;
+    }
+    .skill-panel__content {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .skill-panel__empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .skill-panel__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .skill-panel__card {
+      border: 1px solid rgba(76, 175, 80, 0.16);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(12, 20, 14, 0.85);
+      display: grid;
+      gap: 6px;
+    }
+    .skill-panel__company {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    .skill-panel__role,
+    .skill-panel__period,
+    .skill-panel__blurb {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .skill-panel__role {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .gopher-runner {
+      position: fixed;
+      bottom: 8px;
+      left: -120px;
+      width: 18px;
+      height: 18px;
+      pointer-events: auto;
+      cursor: pointer;
+      z-index: 5;
+      display: block;
+    }
+    .gopher-runner__sprite {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: auto 100%;
+      image-rendering: pixelated;
+      transform: scaleX(-1);
+      transform-origin: center;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gopher-runner {
+        display: none !important;
+      }
+    }
+    .education {
+      display: grid;
+      gap: 16px;
+    }
+    .education-item h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    .education-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    @media (max-width: 720px) {
+      .page {
+        padding: 36px 14px 56px;
+        gap: 18px;
+      }
+      header {
+        padding: 20px;
+      }
+      section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="intro">
+        <h1>Pavel Petrukhin</h1>
+        <p>Backend Developer · Limassol, Cyprus — Open to relocation</p>
+        <div class="links">
+          <a href="https://github.com/ninedraft" target="_blank" rel="noreferrer">github.com/ninedraft</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <img src="selfie.jpg" alt="Portrait of Pavel Petrukhin">
+      </div>
+    </header>
+
+    <section id="skills">
+      <h2>🛠️ Skills</h2>
+      <div class="two-column">
+        <div>
+          <h3>Programming Languages</h3>
+          <ul class="tag-cloud">
+            <li><button class="tag" type="button">Go</button></li>
+            <li><button class="tag" type="button">Python</button></li>
+            <li><button class="tag" type="button">Lua</button></li>
+            <li><button class="tag" type="button">Node.js</button></li>
+          </ul>
+          <h3>Frameworks &amp; Tools</h3>
+          <ul class="tag-cloud">
+            <li><button class="tag" type="button">gRPC</button></li>
+            <li><button class="tag" type="button">GraphQL</button></li>
+            <li><button class="tag" type="button">Event Sourcing</button></li>
+            <li><button class="tag" type="button">REST APIs</button></li>
+            <li><button class="tag" type="button">CLI tooling</button></li>
+          </ul>
+          <h3>Databases</h3>
+          <ul class="tag-cloud">
+            <li><button class="tag" type="button">PostgreSQL</button></li>
+            <li><button class="tag" type="button">MongoDB</button></li>
+            <li><button class="tag" type="button">etcd</button></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cloud Platforms</h3>
+          <ul class="tag-cloud">
+            <li><button class="tag" type="button">AWS S3</button></li>
+            <li><button class="tag" type="button">AWS SES</button></li>
+            <li><button class="tag" type="button">AWS SQS</button></li>
+            <li><button class="tag" type="button">DynamoDB</button></li>
+            <li><button class="tag" type="button">Kubernetes</button></li>
+            <li><button class="tag" type="button">Hyperledger</button></li>
+          </ul>
+          <h3>DevOps</h3>
+          <ul class="tag-cloud">
+            <li><button class="tag" type="button">Docker</button></li>
+            <li><button class="tag" type="button">CI/CD</button></li>
+            <li><button class="tag" type="button">Redis</button></li>
+            <li><button class="tag" type="button">Kafka</button></li>
+          </ul>
+          <h3>Languages</h3>
+          <ul class="tag-cloud">
+            <li><button class="tag" type="button">Russian — Native</button></li>
+            <li><button class="tag" type="button">English — C1</button></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>👨‍💻 Professional Experience</h2>
+      <ul class="experience-list">
+        <li class="experience-card">
+          <header>
+            <h3>Backend Developer · Simple-Life</h3>
+            <div class="meta">
+              <span>Hybrid</span>
+              <span>February 2024 – Present</span>
+            </div>
+          </header>
+          <ul>
+            <li>Automated LLM ticket triage to resolve ~20% of support requests without agents.</li>
+            <li>Built menu recommendations tuned to dietary profiles, boosting relevance across segments.</li>
+            <li>Shipped an activity tracker ingesting telemetry from 50K+ daily mobile users.</li>
+            <li>Maintained configurator + canary rollout flow, cutting UI iteration time from days to ~30 minutes.</li>
+            <li>Engineered a workout planner serving ~1K RPS and adapting plans for 50K+ athletes.</li>
+            <li>Generated 50K+ personalized infographic assets per day for campaigns.</li>
+            <li>Ran SRE/DevOps automation with CI-managed infra updates while keeping thousands of e2e tests green.</li>
+          </ul>
+          <p class="stack"><strong>Technologies:</strong> Go, DynamoDB, SQS, SNS, PostgreSQL, Node.js, PHP (Laravel)</p>
+        </li>
+
+        <li class="experience-card">
+          <header>
+            <h3>Backend Developer · Prisma Labs</h3>
+            <div class="meta">
+              <span>Remote</span>
+              <span>January 2023 – January 2024</span>
+            </div>
+          </header>
+          <ul>
+            <li>Orchestrated tens of thousands of image-generation and ML training jobs via event-driven services.</li>
+            <li>Replaced a third-party subscription provider with an in-house payments stack, cutting recurring costs.</li>
+            <li>Unified CRUD, jobs, events, and payments in a single REST API to simplify web/mobile integration.</li>
+          </ul>
+          <p class="stack"><strong>Technologies:</strong> Go, Python, PostgreSQL, Amazon SQS, Amazon SES, Redis</p>
+        </li>
+
+        <li class="experience-card">
+          <header>
+            <h3>Software Developer · OZON.ru</h3>
+            <div class="meta">
+              <span>Remote</span>
+              <span>May 2021 – January 2023</span>
+            </div>
+          </header>
+          <ul>
+            <li>Delivered a parcel-routing engine answering ~50K RPS route checks between hubs.</li>
+            <li>Dropped 95th-percentile latency to ~20 ms with distributed scheduling and caching.</li>
+            <li>Automated data export/import pipelines removing manual ops work.</li>
+            <li>Launched load-testing program that surfaced bottlenecks ahead of peak season.</li>
+          </ul>
+          <p class="stack"><strong>Technologies:</strong> Go, PostgreSQL, gRPC, GraphQL, etcd, Kafka</p>
+        </li>
+
+        <li class="experience-card">
+          <header>
+            <h3>Developer · Kodix</h3>
+            <div class="meta">
+              <span>Moscow, Russia</span>
+              <span>August 2019 – May 2021</span>
+            </div>
+          </header>
+          <ul>
+            <li>Built a component CMS powering workflows for hundreds of automotive dealer sites.</li>
+            <li>Implemented S3-backed media resizing, cutting catalog payloads and improving load times.</li>
+            <li>Tracked hundreds of millions of SKUs via event-sourced services with robust auth flows.</li>
+          </ul>
+          <p class="stack"><strong>Technologies:</strong> Go, PostgreSQL, MongoDB, gRPC, GraphQL, Kafka, HTML, Node.js, TypeScript</p>
+        </li>
+
+        <li class="experience-card">
+          <header>
+            <h3>Developer · Exon Lab</h3>
+            <div class="meta">
+              <span>Remote</span>
+              <span>February 2018 – October 2018</span>
+            </div>
+          </header>
+          <ul>
+            <li>Delivered a Kubernetes-based cloud platform with MongoDB object storage for ~100K APAC customers.</li>
+            <li>Shipped a CLI and REST API enabling two-command deployments without Helm.</li>
+            <li>Extended Hyperledger contracts with an integration bus for external service interaction.</li>
+          </ul>
+          <p class="stack"><strong>Technologies:</strong> Go, Kubernetes, MongoDB, CLI tooling, Hyperledger</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>🚀 Projects</h2>
+      <div class="projects-grid">
+        <article class="project">
+          <h3>Internet Radio</h3>
+          <a href="https://github.com/ninedraft/substream" target="_blank" rel="noreferrer">github.com/ninedraft/substream</a>
+          <p>A streaming service for internet radio stations.</p>
+          <p><strong>Stack:</strong> Go, Redis, S3</p>
+        </article>
+
+        <article class="project">
+          <h3>Gemini Protocol Implementation</h3>
+          <a href="https://github.com/ninedraft/gemax" target="_blank" rel="noreferrer">github.com/ninedraft/gemax</a>
+          <p>A full implementation of the Gemini protocol for lightweight browsing.</p>
+          <p><strong>Stack:</strong> Go</p>
+        </article>
+
+        <article class="project">
+          <h3>Topological Sorting with Generics</h3>
+          <a href="https://github.com/ninedraft/tsort" target="_blank" rel="noreferrer">github.com/ninedraft/tsort</a>
+          <p>A library supporting topological sorting with generics.</p>
+          <p><strong>Stack:</strong> Go</p>
+        </article>
+
+        <article class="project">
+          <h3>Generic Batch Library</h3>
+          <a href="https://github.com/ninedraft/batch" target="_blank" rel="noreferrer">github.com/ninedraft/batch</a>
+          <p>A library for batching operations efficiently in Go.</p>
+          <p><strong>Stack:</strong> Go</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>📚 Education</h2>
+      <div class="education">
+        <div class="education-item">
+          <h3>Master's Degree · Computer Science and Engineering</h3>
+          <span>Moscow Aviation Institute (MAI), 2019</span>
+        </div>
+        <div class="education-item">
+          <h3>Bachelor's Degree · Physics</h3>
+          <span>Moscow State University (MSU), 2017</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="currentYear"></span> Pavel Petrukhin · Backend Developer
+    </footer>
+  </div>
+
+  <aside class="skill-panel" aria-hidden="true">
+    <div class="skill-panel__header">
+      <h3 class="skill-panel__title">Skill</h3>
+      <button class="skill-panel__close" type="button" aria-label="Close skill panel">&times;</button>
+    </div>
+    <p class="skill-panel__subtitle">Companies where I used this skill.</p>
+    <div class="skill-panel__content">
+      <p class="skill-panel__empty">Select a skill to see related companies.</p>
+      <ul class="skill-panel__list"></ul>
+    </div>
+  </aside>
+
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    (function () {
+      const skillButtons = Array.from(document.querySelectorAll('.tag-cloud .tag'));
+      const panel = document.querySelector('.skill-panel');
+      if (!skillButtons.length || !panel) {
+        return;
+      }
+
+      const panelTitle = panel.querySelector('.skill-panel__title');
+      const panelList = panel.querySelector('.skill-panel__list');
+      const panelEmpty = panel.querySelector('.skill-panel__empty');
+      const closeButton = panel.querySelector('.skill-panel__close');
+      const baseEmptyMessage = panelEmpty.textContent;
+      const defaultTitle = panelTitle.textContent;
+
+      const experienceIndex = {
+        simpleLife: {
+          company: 'Simple-Life',
+          role: 'Backend Developer',
+          period: 'February 2024 – Present',
+          meta: 'Hybrid',
+          blurb: 'Recommendation services, workout planner, and campaign automation. English used daily.'
+        },
+        prismaLabs: {
+          company: 'Prisma Labs',
+          role: 'Backend Developer',
+          period: 'January 2023 – January 2024',
+          meta: 'Remote',
+          blurb: 'ML pipelines, payments, and REST APIs for Lensa / PhotoLeap.'
+        },
+        ozon: {
+          company: 'OZON.ru',
+          role: 'Software Developer',
+          period: 'May 2021 – January 2023',
+          meta: 'Remote',
+          blurb: '50K RPS routing, low latency, and Kafka streams.'
+        },
+        kodix: {
+          company: 'Kodix',
+          role: 'Developer',
+          period: 'August 2019 – May 2021',
+          meta: 'Moscow',
+          blurb: 'Component CMS plus GraphQL and Node.js services for dealer networks.'
+        },
+        exon: {
+          company: 'Exon Lab',
+          role: 'Developer',
+          period: 'February 2018 – October 2018',
+          meta: 'Remote',
+          blurb: 'Kubernetes platform, CLI, and Hyperledger integrations.'
+        }
+      };
+
+      const skillData = {
+        'Go': [experienceIndex.simpleLife, experienceIndex.prismaLabs, experienceIndex.ozon, experienceIndex.kodix, experienceIndex.exon],
+        'Python': [experienceIndex.prismaLabs],
+        'Lua': [],
+        'Node.js': [experienceIndex.simpleLife, experienceIndex.kodix],
+        'gRPC': [experienceIndex.ozon, experienceIndex.kodix],
+        'GraphQL': [experienceIndex.ozon, experienceIndex.kodix],
+        'Event Sourcing': [experienceIndex.kodix],
+        'REST APIs': [experienceIndex.prismaLabs, experienceIndex.simpleLife, experienceIndex.exon],
+        'CLI tooling': [experienceIndex.simpleLife, experienceIndex.exon],
+        'PostgreSQL': [experienceIndex.simpleLife, experienceIndex.prismaLabs, experienceIndex.ozon, experienceIndex.kodix],
+        'MongoDB': [experienceIndex.kodix, experienceIndex.exon],
+        'etcd': [experienceIndex.ozon],
+        'AWS S3': [experienceIndex.simpleLife, experienceIndex.kodix],
+        'AWS SES': [experienceIndex.simpleLife, experienceIndex.prismaLabs],
+        'AWS SQS': [experienceIndex.simpleLife, experienceIndex.prismaLabs],
+        'DynamoDB': [experienceIndex.simpleLife],
+        'Kubernetes': [experienceIndex.simpleLife, experienceIndex.exon],
+        'Hyperledger': [experienceIndex.exon],
+        'Docker': [experienceIndex.simpleLife],
+        'CI/CD': [experienceIndex.simpleLife],
+        'Redis': [experienceIndex.simpleLife, experienceIndex.prismaLabs],
+        'Kafka': [experienceIndex.ozon, experienceIndex.kodix],
+        'Russian — Native': [experienceIndex.simpleLife, experienceIndex.prismaLabs, experienceIndex.ozon, experienceIndex.kodix, experienceIndex.exon],
+        'English — C1': [experienceIndex.prismaLabs, experienceIndex.ozon, experienceIndex.exon]
+      };
+
+      const getSkillKey = (button) => (button.dataset.skill || button.textContent).trim();
+      let activeSkill = null;
+
+      const setActiveButton = (skill) => {
+        skillButtons.forEach((button) => {
+          const matches = skill && getSkillKey(button) === skill;
+          button.classList.toggle('is-active', Boolean(matches));
+          button.setAttribute('aria-pressed', matches ? 'true' : 'false');
+        });
+      };
+
+      const renderSkill = (skill) => {
+        const entries = skillData[skill] || [];
+        panelTitle.textContent = skill;
+        panelList.innerHTML = '';
+
+        if (!entries.length) {
+          panelEmpty.textContent = `No dedicated case for the "${skill}" skill yet.`;
+          panelEmpty.hidden = false;
+          return;
+        }
+
+        panelEmpty.hidden = true;
+
+        entries.forEach((entry) => {
+          const item = document.createElement('li');
+          item.className = 'skill-panel__card';
+
+          const company = document.createElement('h4');
+          company.className = 'skill-panel__company';
+          company.textContent = entry.company;
+
+          const role = document.createElement('p');
+          role.className = 'skill-panel__role';
+          role.textContent = entry.role;
+
+          const period = document.createElement('p');
+          period.className = 'skill-panel__period';
+          period.textContent = entry.meta ? `${entry.period} · ${entry.meta}` : entry.period;
+
+          item.append(company, role, period);
+
+          if (entry.blurb) {
+            const blurb = document.createElement('p');
+            blurb.className = 'skill-panel__blurb';
+            blurb.textContent = entry.blurb;
+            item.appendChild(blurb);
+          }
+
+          panelList.appendChild(item);
+        });
+      };
+
+      const openPanel = () => {
+        panel.classList.add('skill-panel--open');
+        panel.setAttribute('aria-hidden', 'false');
+      };
+
+      const closePanel = () => {
+        if (!panel.classList.contains('skill-panel--open')) {
+          return;
+        }
+        panel.classList.remove('skill-panel--open');
+        panel.setAttribute('aria-hidden', 'true');
+        panelEmpty.hidden = false;
+        panelEmpty.textContent = baseEmptyMessage;
+        panelTitle.textContent = defaultTitle;
+        panelList.innerHTML = '';
+        setActiveButton(null);
+        activeSkill = null;
+      };
+
+      skillButtons.forEach((button) => {
+        button.setAttribute('type', 'button');
+        button.setAttribute('aria-pressed', 'false');
+        button.addEventListener('click', () => {
+          const skill = getSkillKey(button);
+          if (activeSkill === skill) {
+            closePanel();
+            return;
+          }
+          activeSkill = skill;
+          setActiveButton(skill);
+          renderSkill(skill);
+          openPanel();
+        });
+      });
+
+      closeButton.addEventListener('click', closePanel);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closePanel();
+        }
+      });
+    })();
+
+    (function () {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mediaQuery.matches) {
+        return;
+      }
+
+      const sheetUrl = 'https://raw.githubusercontent.com/egonelbre/gophers/master/animation/2bit-sprite/sheet.png';
+      const TOTAL_FRAMES = 27;
+      const RUN_START = 9;
+      const RUN_END = 26;
+
+      let runStartFrame = RUN_START;
+      let runFrameCount = RUN_END - RUN_START + 1;
+
+      const gopher = document.createElement('div');
+      gopher.className = 'gopher-runner';
+      gopher.setAttribute('aria-hidden', 'true');
+      gopher.setAttribute('role', 'presentation');
+
+      const spriteLayer = document.createElement('div');
+      spriteLayer.className = 'gopher-runner__sprite';
+      spriteLayer.style.backgroundImage = `url(${sheetUrl})`;
+
+      gopher.appendChild(spriteLayer);
+      document.body.appendChild(gopher);
+
+      const sprite = new Image();
+      sprite.src = sheetUrl;
+
+      let frameIndex = 0;
+      let scaledFrameWidth = parseInt(window.getComputedStyle(gopher).width, 10) || 18;
+      let scaledFrameHeight = parseInt(window.getComputedStyle(gopher).height, 10) || 18;
+      let position = -scaledFrameWidth;
+      let lastTime = null;
+      let frameAccumulator = 0;
+      const frameInterval = 120;
+      const speed = 32;
+      let active = true;
+      let removed = false;
+
+      const applyFrame = () => {
+        const actualFrame = runStartFrame + frameIndex;
+        const offset = Math.round(actualFrame * scaledFrameWidth);
+        spriteLayer.style.backgroundPosition = `-${offset}px 0`;
+      };
+
+      const setGroundHeight = () => {
+        const groundOffset = 8;
+        gopher.style.bottom = `${groundOffset}px`;
+      };
+
+      const updateBackgroundSize = () => {
+        spriteLayer.style.backgroundSize = `${TOTAL_FRAMES * scaledFrameWidth}px ${scaledFrameHeight}px`;
+      };
+
+      gopher.style.left = `${Math.round(position)}px`;
+      setGroundHeight();
+      applyFrame();
+      updateBackgroundSize();
+
+      const onSpriteReady = () => {
+        const naturalWidth = sprite.naturalWidth || TOTAL_FRAMES * 12;
+        const naturalHeight = sprite.naturalHeight || 12;
+
+        const frameWidth = Math.max(1, Math.round(naturalWidth / TOTAL_FRAMES));
+        const frameHeight = Math.max(1, naturalHeight);
+
+        runStartFrame = Math.min(RUN_START, TOTAL_FRAMES - 1);
+        const runEndFrame = Math.min(RUN_END, TOTAL_FRAMES - 1);
+        runFrameCount = Math.max(1, runEndFrame - runStartFrame + 1);
+        frameIndex = frameIndex % runFrameCount;
+
+        const scale = Math.min(6, Math.max(3, Math.floor(96 / frameHeight)));
+        const reducedScale = Math.max(0.5, scale / 4);
+        scaledFrameWidth = frameWidth * reducedScale;
+        scaledFrameHeight = frameHeight * reducedScale;
+
+        gopher.style.width = `${scaledFrameWidth}px`;
+        gopher.style.height = `${scaledFrameHeight}px`;
+
+        position = -scaledFrameWidth;
+        gopher.style.left = `${Math.round(position)}px`;
+
+        updateBackgroundSize();
+        applyFrame();
+      };
+
+      sprite.addEventListener('load', onSpriteReady, { once: true });
+      if (sprite.complete) {
+        onSpriteReady();
+      }
+
+      const tick = (timestamp) => {
+        if (!active) {
+          return;
+        }
+        if (lastTime === null) {
+          lastTime = timestamp;
+        }
+        const delta = timestamp - lastTime;
+        frameAccumulator += delta;
+        if (frameAccumulator >= frameInterval) {
+          frameIndex = (frameIndex + 1) % runFrameCount;
+          applyFrame();
+          frameAccumulator %= frameInterval;
+        }
+        position += (delta / 1000) * speed;
+        const limit = window.innerWidth + scaledFrameWidth;
+        if (position > limit) {
+          position = -scaledFrameWidth - Math.random() * scaledFrameWidth;
+          setGroundHeight();
+        }
+        gopher.style.left = `${Math.round(position)}px`;
+        lastTime = timestamp;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+
+      const removeGopher = () => {
+        if (removed) {
+          return;
+        }
+        removed = true;
+        active = false;
+        gopher.remove();
+      };
+
+      gopher.addEventListener('click', removeGopher);
+
+      const handleMotionChange = (event) => {
+        if (!event.matches) {
+          return;
+        }
+        removeGopher();
+      };
+
+      if (typeof mediaQuery.addEventListener === 'function') {
+        mediaQuery.addEventListener('change', handleMotionChange);
+      } else if (typeof mediaQuery.addListener === 'function') {
+        mediaQuery.addListener(handleMotionChange);
+      }
+    })();
+  </script>
+</body>
+</html>
